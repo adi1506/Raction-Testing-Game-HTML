@@ -1,0 +1,102 @@
+
+<html>
+	<head>
+		<title>Reaction Timer</title>
+		<style type="text/css">
+		
+			#obj{
+				height:150px;
+				width:150px;
+				background-color : red;
+				display:none;
+				position:relative;
+				
+			}
+		
+		
+		
+		</style>
+		
+	</head>
+	<body>
+		<h1 align="center">Reaction Testing Game</h1>
+		<p><u>Instructions: Click on the shapes as quickly as possible!!! </u></p>
+		<p ><b>Time Elapsed : </b><span  id="time"></span></p>
+		<p> <b>Total Score  : </b><span id="score"></span></p>
+		<div id="obj"></div>
+		<script type="text/javascript">
+		
+			var start = new Date().getTime();
+			
+			function randomColor(){
+			
+				var letters = '0123456789ABCDEF'.split('');
+				var color = "#";
+				for(var i =0 ; i<6 ;i++)
+				{
+					color+= letters[Math.floor(Math.random() * 16)] ;
+				}
+				return color;
+			}
+			
+			
+			function appear(){
+			
+					var x = Math.random() * 400;
+					
+					var y = Math.random() * 400;
+					
+					var width = (Math.random() * 300) + 50;
+					
+					if(Math.random() >0.5)
+					{
+						document.getElementById("obj").style.borderRadius = "50%";
+					}
+					else
+					{
+						document.getElementById("obj").style.borderRadius = "0";
+
+					}
+					
+					document.getElementById("obj").style.backgroundColor = randomColor() ;
+					
+					document.getElementById("obj").style.width = width + "px";
+					
+					document.getElementById("obj").style.height = width + "px";
+
+					
+					document.getElementById("obj").style.top = x+"px";
+					
+					document.getElementById("obj").style.left = y+"px";
+	
+					document.getElementById("obj").style.display = "block";
+					
+					start = new Date().getTime();
+
+			}
+			
+			function delay(){
+			
+					setTimeout(appear,Math.random() * 2000);
+
+			}
+			delay();
+			document.getElementById("obj").onclick = function() {
+				
+				document.getElementById("obj").style.display = "none";
+				
+				var end = new Date().getTime();
+				
+				var elap = (end - start)/1000;
+				
+				document.getElementById("time").innerHTML = elap + " seconds";
+				
+				delay();			
+			}
+			
+			
+			
+		
+		</script>
+	</body>
+</html>
